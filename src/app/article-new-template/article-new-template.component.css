@@ -1,0 +1,37 @@
+.ng-invalid.ng-dirty {
+  border-color: #dc3545;
+}
+
+.ng-valid.ng-dirty {
+  border-color: #28a745;
+}
+
+h1 {
+font-size: 1.5rem;
+color: #181B3A;
+margin-bottom: 20px;
+}
+
+.form-container {
+background-color: white;
+margin: 0 auto;
+margin-top: 100px;
+max-width: 40%;
+padding: 40px;
+border-radius: 8px;
+}
+@media only screen and (max-width: 600px) {
+  .form-container {
+    max-width: 90%;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .form-container {
+    max-width: 70%;
+  }
+}
+form div div div {
+font-size: 0.8rem;
+color: #dc3545;
+margin-top: 6px;
+}

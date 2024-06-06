@@ -1,0 +1,90 @@
+.article-container{
+  width: fit-content;
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 100px;
+  background-color: white;
+  opacity: 70%;
+}
+
+
+.article-image {
+  width: 400px;
+  height: auto;
+  margin: auto;
+  padding: 20px;
+}
+.article-onSale {
+  box-shadow: rgb(61, 61, 229) 0px -2px 50px 0px;
+ opacity: 100%;
+
+
+}
+
+div div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+div div:nth-child(2) {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-direction: row;
+}
+
+div p {
+  text-align: center;
+}
+
+div h2 {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 700;
+}
+div div p:nth-child(3) {
+  margin-top: 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgb(71, 69, 69);
+}
+div div p:nth-child(4) {
+  margin-top: 0;
+  font-size: 0.9rem;
+  color: rgb(61, 61, 229);
+}
+button {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.price-onSale {
+  color: rgb(128, 128, 128, 0.4);
+}
+
+input {
+  width: 200px;
+  margin: auto;
+
+}
+
+.rowBtns {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.rowBtns p {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-bottom: 87px;
+}

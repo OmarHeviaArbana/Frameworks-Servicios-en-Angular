@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" (click)="showComponent('articleList')">Angular Ecommerce</a>
+      <div class="navbar-nav">
+        <a class="nav-link" [ngClass]= "{ 'active': articleList}"  href="#" (click)="showComponent('articleList')">Inicio</a>
+        <a class="nav-link" [ngClass]= "{ 'active': articleList}" href="#" (click)="showComponent('articleList')">Artículos</a>
+        <a class="nav-link" [ngClass]= "{ 'active': articleNewTemplate}" href="#" (click)="showComponent('articleNewTemplate')">Nuevo artículo template</a>
+        <a class="nav-link" [ngClass]= "{ 'active': articleNewReactive}" href="#" (click)="showComponent('articleNewReactive')">Nuevo artículo reactivo</a>
+      </div>
+  </div>
+</nav>
+
+<div *ngIf="articleList">
+  <app-article-list></app-article-list>
+</div>
+
+ <div *ngIf="articleNewTemplate">
+  <app-article-new-template></app-article-new-template>
+</div>
+
+<div *ngIf="articleNewReactive">
+  <app-article-new-reactive></app-article-new-reactive>
+</div>
+

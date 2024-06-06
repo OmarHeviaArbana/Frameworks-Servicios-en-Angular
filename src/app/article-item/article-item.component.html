@@ -1,0 +1,19 @@
+
+  <div class="article-container" [ngClass]= "{ 'article-onSale': article.isOnSale}" >
+    <div>
+      <img [src]="article.imageUrl" alt="Imagen del artículo" class="article-image">
+      <h2>{{ article.name }}</h2>
+      <p [ngClass]= "{ 'price-onSale': !article.isOnSale}">Precio: {{ article.price }}€</p>
+      <p *ngIf="article.isOnSale">Unidades: {{ article.quantityInCart }}</p>
+      <input *ngIf="article.isOnSale" type="number" [(ngModel)]="article.quantityInCart" min="0" (change)="quantityChange(article.quantityInCart)" />
+    </div>
+
+    <div *ngIf="article.isOnSale" class="rowBtns">
+      <button (click)="removeArticleUnit(article.quantityInCart)" [disabled]="article.quantityInCart === 0">-</button>
+      <button (click)="addArticleUnit(article.quantityInCart)">+</button>
+    </div>
+    <div *ngIf="!article.isOnSale" class="rowBtns">
+      <p>Articulo no disponible</p>
+    </div>
+  </div>
+

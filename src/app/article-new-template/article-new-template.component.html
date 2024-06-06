@@ -1,0 +1,35 @@
+
+<div class="form-container">
+  <h1>New Article Template</h1>
+  <form (ngSubmit)="createArticle(articleForm)" #articleForm="ngForm" class="d-flex justify-content-center flex-column">
+    <div ngModelGroup="article">
+      <div class="mb-3">
+        <label for="name" class="form-label">Article Name:</label>
+        <input type="text" class="form-control" id="name" name="name" #name="ngModel" ngModel required>
+        <div *ngIf="name.invalid && name.dirty || name.invalid && articleForm.submitted">
+          <div *ngIf="name.errors?.['required']">Article name is required</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price Name:</label>
+        <input type="number" class="form-control" id="price" name="price" #price="ngModel" ngModel required>
+        <div *ngIf="price.invalid && price.dirty || price.invalid && articleForm.submitted">
+          <div *ngIf="price.errors?.['required']">Article price is required</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label">Article Image URL:</label>
+        <input type="text" class="form-control" id="imageUrl" name="imageUrl" pattern="https?:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}(\/[a-zA-Z0-9.-]+)*\/?[a-zA-Z0-9.-]+\.(jpg|jpeg|png|gif)" #imageUrl="ngModel" ngModel required>
+        <div *ngIf="imageUrl.invalid && imageUrl.dirty || imageUrl.invalid && articleForm.submitted">
+          <div *ngIf="imageUrl.errors?.['required']">Article image URL is required</div>
+          <div *ngIf="imageUrl.errors?.['pattern']">Article image URL does not seem to be a valid URL</div>
+        </div>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="isOnSale" name="isOnSale" ngModel>
+        <label class="form-check-label" for="isOnSale">On Sale:</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</div>

@@ -1,0 +1,26 @@
+
+.navbar-brand {
+ color: #2a2e57;
+ font-weight: 700;
+}
+
+@media only screen and (max-width: 992px) {
+  .container-fluid {
+  justify-content: center;
+  }
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .container-fluid {
+    margin: 0 11% auto;
+  }
+
+}
