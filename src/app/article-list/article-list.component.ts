@@ -65,26 +65,17 @@ export class ArticleListComponent implements OnInit{
  constructor(private articleService: ArticleService) {};
 
   ngOnInit(): void {
-
     this.articleService.getArticles().subscribe(articles => {
       this.articles = articles;
     });
-
   }
 
-
-  addArticleUnit($event : Object ): void {
-    const article = this.articles.find(a => a.id === $event);
-    if (article) {
-      article.quantityInCart++;
-    }
+  addArticleUnit(articleID: number ): void {
+    this.articleService.changeQuantity(articleID, 1).subscribe();
   }
 
-  removeArticleUnit($event : Object ): void {
-    const article = this.articles.find(a => a.id === $event);
-    if (article && article.quantityInCart > 0) {
-      article.quantityInCart--;
-    }
+  removeArticleUnit(articleID: number ): void {
+    this.articleService.changeQuantity(articleID, -1).subscribe();
   }
 }
 

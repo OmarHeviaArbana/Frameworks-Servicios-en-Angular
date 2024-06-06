@@ -39,6 +39,15 @@ export class ArticleService {
     return Observableof(this.articles);
   }
 
+  changeQuantity(articleID: number, changeInQuantity: number): Observable<Article | null> {
+    const article = this.articles.find(article => article.id === articleID);
+    if (article) {
+      article.quantityInCart += changeInQuantity;
+      return Observableof(article);
+    }
+    return Observableof(null);
+  }
+
   constructor() { }
 
 
