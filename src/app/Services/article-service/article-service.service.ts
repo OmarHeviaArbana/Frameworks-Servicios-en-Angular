@@ -8,6 +8,8 @@ import { Observable, of as Observableof} from 'rxjs';
 })
 export class ArticleService {
 
+  constructor() { }
+
   private articles: Article[] = [
     {
       name: 'MacBook Pro de 14 pulgadas - Gris espacial',
@@ -48,7 +50,11 @@ export class ArticleService {
     return Observableof(null);
   }
 
-  constructor() { }
+  create(article: Article): Observable<any> {
+    this.articles.push(article);
+    return Observableof(article);
+  }
+
 
 
 }
