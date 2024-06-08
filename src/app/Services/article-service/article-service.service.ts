@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Article } from './../../article-item/article.model';
 import { Observable, of as Observableof} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Observable, of as Observableof} from 'rxjs';
 })
 export class ArticleService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   private articles: Article[] = [
     {
@@ -54,6 +55,16 @@ export class ArticleService {
     this.articles.push(article);
     return Observableof(article);
   }
+
+
+ /*  getStocks() : Observable<Stock[]> {
+    return this.http.get<Stock[]>('/api/stock');
+  }
+
+  createStock(stock: Stock): Observable<any> {
+    return this.http.post('/api/stock', stock);
+  } */
+
 
 
 
