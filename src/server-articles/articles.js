@@ -42,7 +42,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   let article= req.body;
   if (article.id) {
-  
+
     return res
       .status(400)
       .json({ msg: 'Article Id seems to already have an id assigned' });

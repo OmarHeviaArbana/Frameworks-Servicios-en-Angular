@@ -65,17 +65,21 @@ export class ArticleListComponent implements OnInit{
  constructor(private articleService: ArticleService) {};
 
   ngOnInit(): void {
-    this.articleService.getArticles().subscribe(articles => {
+      this.articleService.getArticles().subscribe(articles => {
       this.articles = articles;
+
+
     });
   }
 
   addArticleUnit(articleID: number ): void {
     this.articleService.changeQuantity(articleID, 1).subscribe();
+
   }
 
   removeArticleUnit(articleID: number ): void {
     this.articleService.changeQuantity(articleID, -1).subscribe();
+
   }
 }
 
