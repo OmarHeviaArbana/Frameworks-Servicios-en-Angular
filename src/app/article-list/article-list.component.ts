@@ -1,17 +1,26 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Article, ArticleQuantityChange  } from '../article-item/article.model';
 import { ArticleService } from '../Services/article-service/article-service.service';
-
+import {  distinctUntilChanged, startWith,debounceTime, switchMap, share } from 'rxjs/operators';
+import { Observable, Subject, of} from 'rxjs';
 
 @Component({
   selector: 'app-article-list',
   template: `
   <div>
+    <input
+          class="form-control mt-4"
+          name="searchBox"
+          [(ngModel)]="searchString"
+          placeholder="Buscador de artículos"
+          (keyup)="search()">
+  </div>
+  <div>
     <app-article-item
-      *ngFor="let article of articles"
+      *ngFor="let article of articles$ | async"
       [article]="article"
-      (addArticle)="addArticleUnit($event.article.id)"
-      (removeArticle)="removeArticleUnit($event.article.id)"
+      (addArticle)="addArticleUnit(article.id)"
+      (removeArticle)="removeArticleUnit(article.id)"
       >
 
     </app-article-item>
@@ -59,27 +68,42 @@ import { ArticleService } from '../Services/article-service/article-service.serv
 })
 export class ArticleListComponent implements OnInit{
 
- @Input() articles: Article[] = [];
- @Output() articleQuantityChange = new EventEmitter<ArticleQuantityChange>();
+  @Input() articles: Article[] = [];
+  @Output() articleQuantityChange = new EventEmitter<ArticleQuantityChange>();
 
- constructor(private articleService: ArticleService) {};
+  public articles$: Observable<Article[]> = of([]);
+  public searchString: string = '';
+  private searchTerms: Subject<string> = new Subject();
+
+  constructor(private articleService: ArticleService) {};
 
   ngOnInit(): void {
-      this.articleService.getArticles().subscribe(articles => {
-      this.articles = articles;
-
-
-    });
+    this.articles$ = this.searchTerms.pipe(
+      startWith(this.searchString),
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap((query) => this.articleService.getArticles(query)),
+      share()
+    );
   }
 
   addArticleUnit(articleID: number ): void {
-    this.articleService.changeQuantity(articleID, 1).subscribe();
-
+    this.articleService.changeQuantity(articleID, 1).subscribe(updatedArticle => {
+      if (updatedArticle) {
+        this.search();
+      }
+    });
   }
 
   removeArticleUnit(articleID: number ): void {
-    this.articleService.changeQuantity(articleID, -1).subscribe();
-
+    this.articleService.changeQuantity(articleID, -1).subscribe(updatedArticle => {
+      if (updatedArticle) {
+        this.search();
+      }
+    });
+  }
+  search() {
+    this.searchTerms.next(this.searchString);
   }
 }
 

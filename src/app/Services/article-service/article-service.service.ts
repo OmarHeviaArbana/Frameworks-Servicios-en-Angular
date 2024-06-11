@@ -55,15 +55,15 @@ export class ArticleService {
     return Observableof(article);
   } */
 
-  getArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>('http://localhost:3000/api/articles');
+  getArticles(query: string): Observable<Article[]> {
+    return this.http.get<Article[]>(`http://localhost:3000/api/articles?q=${query}`);
   }
 
   create(article: Article): Observable<Article> {
     return this.http.post<Article>('http://localhost:3000/api/articles', article);
   }
-  changeQuantity(articleID: number, changeInQuantity: number): Observable<Article | null> {
-    return this.http.patch<Article>(`${'http://localhost:3000/api/articles'}/${articleID}`, {changeInQuantity});
+  changeQuantity(articleID: number, changeInQuantity: number): Observable<Article> {
+    return this.http.patch<Article>(`http://localhost:3000/api/articles/${articleID}`, {changeInQuantity});
   }
 
 
