@@ -2,8 +2,8 @@
   <div class="article-container" [ngClass]= "{ 'article-onSale': article.isOnSale}" >
     <div>
       <img [src]="article.imageUrl" alt="Imagen del artículo" class="article-image">
-      <h2>{{ article.name }}</h2>
-      <p [ngClass]= "{ 'price-onSale': !article.isOnSale}">Precio: {{ article.price }}€</p>
+      <h2>{{ article.name | uppercase }}</h2>
+      <p [ngClass]= "{ 'price-onSale': !article.isOnSale}">Precio: {{ article.price | priceArticleFormat }}</p>
       <p *ngIf="article.isOnSale">Unidades: {{ article.quantityInCart }}</p>
       <input *ngIf="article.isOnSale" type="number" [(ngModel)]="article.quantityInCart" min="0" (change)="quantityChange(article.quantityInCart)" />
     </div>

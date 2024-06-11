@@ -8,57 +8,67 @@ import { Observable, Subject, of} from 'rxjs';
   selector: 'app-article-list',
   template: `
   <div>
-    <input
-          class="form-control mt-4"
-          name="searchBox"
-          [(ngModel)]="searchString"
-          placeholder="Buscador de artículos"
-          (keyup)="search()">
-  </div>
-  <div>
-    <app-article-item
-      *ngFor="let article of articles$ | async"
-      [article]="article"
-      (addArticle)="addArticleUnit(article.id)"
-      (removeArticle)="removeArticleUnit(article.id)"
-      >
+    <div>
+      <input
+            class="form-control mt-5"
+            name="searchBox"
+            [(ngModel)]="searchString"
+            placeholder="Buscador de artículos"
+            (keyup)="search()">
+    </div>
+    <div class="container">
+      <app-article-item
+        *ngFor="let article of articles$ | async"
+        [article]="article"
+        (addArticle)="addArticleUnit(article.id)"
+        (removeArticle)="removeArticleUnit(article.id)"
+        >
 
-    </app-article-item>
+      </app-article-item>
 
+    </div>
   </div>
   `,
   styles: [`
+
   div {
+    margin: 0 5% auto;
+  }
+  div.container {
     display: grid;
     grid-template-columns: 1fr ;
     gap: 40px;
     justify-content: center;
-    margin: 0 5% auto;
+    margin: 0 auto;
   }
 
   @media only screen and (max-width: 600px) {
-    div {
+    div.container {
       grid-template-columns: 1fr  ;
     }
   }
   @media only screen and (min-width: 600px) {
-    div {
+    div.container {
       grid-template-columns: 1fr  ;
     }
   }
   @media only screen and (min-width: 992px) {
-    div {
+    div.container {
       grid-template-columns: 1fr ;
     }
   }
   @media only screen and (min-width: 1200px) {
+
     div {
-      grid-template-columns: 1fr 1fr ;
       margin: 0 10% auto;
+    }
+    div.container {
+      grid-template-columns: 1fr 1fr ;
+      margin: 0 auto;
     }
   }
   @media only screen and (min-width: 1900px) {
-    div {
+    div.container {
       grid-template-columns: 1fr 1fr 1fr;
 
     }

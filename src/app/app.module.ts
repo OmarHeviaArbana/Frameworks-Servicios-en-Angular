@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ArticleNewTemplateComponent } from './article-new-template/article-new-template.component';
 import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-reactive.component';
 import { ArticleService } from './Services/article-service/article-service.service';
+import { PriceArticleFormat } from './Pipes/price-article-format.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ArticleService } from './Services/article-service/article-service.servi
     ArticleListComponent,
     NavbarComponent,
     ArticleNewTemplateComponent,
-    ArticleNewReactiveComponent
+    ArticleNewReactiveComponent,
+    PriceArticleFormat
   ],
   imports: [
     BrowserModule,
