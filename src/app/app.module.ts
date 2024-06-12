@@ -13,6 +13,7 @@ import { ArticleNewTemplateComponent } from './article-new-template/article-new-
 import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-reactive.component';
 import { ArticleService } from './Services/article-service/article-service.service';
 import { PriceArticleFormat } from './Pipes/price-article-format.pipe';
+import { DefaultImageArticle } from './Pipes/default-image-article.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PriceArticleFormat } from './Pipes/price-article-format.pipe';
     NavbarComponent,
     ArticleNewTemplateComponent,
     ArticleNewReactiveComponent,
-    PriceArticleFormat
+    PriceArticleFormat,
+    DefaultImageArticle
   ],
   imports: [
     BrowserModule,
