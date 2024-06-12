@@ -20,8 +20,8 @@ import { Observable, Subject, of} from 'rxjs';
       <app-article-item
         *ngFor="let article of articles$ | async"
         [article]="article"
-        (addArticle)="addArticleUnit(article.id)"
-        (removeArticle)="removeArticleUnit(article.id)"
+        (addArticle)="addArticleUnit(article)"
+        (removeArticle)="removeArticleUnit(article)"
         >
 
       </app-article-item>
@@ -96,22 +96,23 @@ export class ArticleListComponent implements OnInit{
       share()
     );
   }
+  addArticleUnit(article: any): void {
+    this.articleService.changeQuantity(article.id, +article.quantityInCart).subscribe(updatedArticle => {
+      if (updatedArticle) {
+        this.search();
+      }
 
-  addArticleUnit(articleID: number ): void {
-    this.articleService.changeQuantity(articleID, 1).subscribe(updatedArticle => {
+    });
+  }
+
+  removeArticleUnit(article: any ): void {
+    this.articleService.changeQuantity(article.id, -article.quantityInCart).subscribe(updatedArticle => {
       if (updatedArticle) {
         this.search();
       }
     });
   }
 
-  removeArticleUnit(articleID: number ): void {
-    this.articleService.changeQuantity(articleID, -1).subscribe(updatedArticle => {
-      if (updatedArticle) {
-        this.search();
-      }
-    });
-  }
   search() {
     this.searchTerms.next(this.searchString);
   }
